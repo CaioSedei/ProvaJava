@@ -1,0 +1,40 @@
+Desenvolva uma aplicação Java para gerenciar um campeonato de robôs. Utilize uma classe de domínio chamada `Robo`, uma classe `Main` e um `ArrayList<Robo>` para armazenar os participantes. A aplicação deverá funcionar por meio de um menu no console.
+
+Cada robô deverá possuir os atributos: código, nome, ataque, defesa, energia atual, vitórias, derrotas e pontos. O código deverá ser positivo e exclusivo; o nome não poderá estar vazio; o ataque deverá estar entre 10 e 30; e a defesa, entre 0 e 20. Cada robô começará com 100 de energia e os demais indicadores zerados.
+
+O sistema deverá permitir:
+
+1. **Cadastrar e consultar robôs:** cadastrar participantes, buscar pelo código e listar todos os robôs com seus atributos e situação: **disponível** quando possuir pelo menos 30 de energia ou **em recuperação** quando possuir menos de 30.
+
+2. **Realizar um combate:** solicitar os códigos de dois robôs distintos. Ambos deverão existir e possuir pelo menos 30 de energia. O combate terá até cinco rodadas, com as seguintes regras:
+
+   * O robô com menos pontos atacará primeiro em todas as rodadas daquele combate. Em caso de empate, começará o de menor código. Essa ordem será definida antes do início da luta.
+   * Cada ataque causará dano igual ao ataque do agressor menos a defesa do adversário, com dano mínimo de 5.
+   * Nas rodadas pares, o dano calculado receberá um bônus de 5.
+   * O dano reduzirá a energia do adversário, que nunca poderá ficar negativa.
+   * Se um robô chegar a zero de energia, o combate terminará imediatamente, sem direito a contra-ataque.
+   * Caso ambos sobrevivam às cinco rodadas, vencerá aquele com mais energia restante. Se as energias forem iguais, haverá empate.
+   * O vencedor receberá três pontos e uma vitória; o perdedor receberá uma derrota. Em caso de empate, cada participante receberá um ponto, sem alteração nas vitórias e derrotas.
+   * A energia restante será mantida para os próximos combates.
+
+O sistema deverá mostrar cada ataque, o dano causado, a energia restante e o resultado final. Uma tentativa de combate inválida não poderá modificar nenhum participante.
+
+3. **Recuperar energia:** solicitar o código do robô e a quantidade de energia desejada, que deverá ser um número positivo e múltiplo de 10. Cada bloco de 10 de energia custará um ponto do campeonato. A operação somente será aceita se o robô tiver pontos suficientes e a energia final não ultrapassar 100. Se alguma condição falhar, a operação inteira deverá ser recusada.
+
+4. **Executar uma rodada geral:** todos os robôs que estiverem disponíveis no início da operação deverão participar de exatamente um combate, exceto quando houver quantidade ímpar de participantes. Os confrontos deverão ser formados obedecendo à classificação: primeiro contra segundo, terceiro contra quarto e assim por diante. Se houver quantidade ímpar, o último ficará sem adversário e receberá um ponto de folga. A lista de confrontos deverá ser definida antes de iniciar as lutas; os resultados não poderão alterar os confrontos já definidos. Se houver menos de dois robôs disponíveis, a operação deverá ser recusada, sem conceder ponto de folga.
+
+5. **Exibir a classificação:** ordenar os participantes por pontos em ordem decrescente. Em caso de empate, considerar, nesta sequência: maior número de vitórias, maior energia restante e menor código. A exibição da classificação não poderá modificar a ordem de cadastro no `ArrayList` principal.
+
+6. **Emitir estatísticas:** apresentar a quantidade de robôs cadastrados, a média de energia de todos os participantes, os robôs em recuperação e o participante com maior aproveitamento. O aproveitamento será calculado dividindo as vitórias pelo total de combates realizados e multiplicando por 100. Empates deverão contar como combates; folgas não. Robôs que ainda não lutaram deverão ser desconsiderados nesse cálculo. Em caso de empate no maior aproveitamento, apresentar todos os empatados. **Identifique e acrescente à classe o atributo necessário para calcular corretamente essa informação.**
+
+7. **Excluir participante:** permitir a exclusão somente de robôs que nunca tenham realizado um combate.
+
+**Requisitos técnicos**
+
+A classe `Robo` deverá possuir construtor e métodos que representem suas ações, protegendo as regras de alteração de energia e indicadores. A classe `Main` será responsável pelo menu, pelas buscas, pela organização dos confrontos e pela interação com o usuário.
+
+Não utilize métodos prontos de ordenação. Implemente buscas e ordenação utilizando repetições e condicionais. É permitido utilizar listas auxiliares.
+
+O programa deverá tratar entradas inválidas, códigos inexistentes e listas vazias, apresentando mensagens claras e mantendo os dados consistentes.
+
+**Entrega:** arquivos `Robo.java` e `Main.java`, acompanhados de uma demonstração com pelo menos cinco robôs, um combate individual, uma rodada geral, uma recuperação aceita, uma recuperação recusada e a classificação final.
