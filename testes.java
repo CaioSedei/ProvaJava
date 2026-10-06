@@ -14,6 +14,7 @@ public static void main(String[] args) {
         robo1.batalha(robo2);
         robo2.batalha(robo3);
         robo3.batalha(robo1);
+
         // Simulação de batalha
         // robo1.perderEnergia(30);
 
